@@ -1,0 +1,49 @@
+{{ block content }}
+    <style>
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+
+    p {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    </style>
+
+<img src="{{ static 'UvA-logo.png' }}" class="center" alt=""/>
+
+    <p>
+        Dear participant,
+        <br>
+        Welcome and thank you for participating in this experiment!
+
+        <br><br>
+        This experiment is part of a Master's thesis for MSc Business Economics, track Neuroeconomics at the University of Amsterdam.
+        The study is conducted by Lizzy Da Rocha Bazilio under the supervision of Jan Hausfeld, PhD.
+
+        <br>
+        Please read the instructions carefully!
+        If you have any questions regarding the study or experiment, please feel free to contact Lizzy Da Rocha Bazilio (lizzydrb@gmail.com).
+
+        <br><br>
+        This experiment consists of a Collective Risk Social Dilemma game and a concluding questionnaire.
+        The whole experiment takes 5-10 minutes to complete.
+
+        <br><br>
+        The outcomes of this study may be used only for scientific purposes and will not be shared with any third parties.
+        You will remain completely anonymous. Participation in this study is voluntary.
+        You have the right to withdraw at any point during the study, for any reason, and without consequences.
+        Any identifying information collected in the study will be deleted after data collection is complete.
+        If you have any questions or concerns about privacy, please contact Lizzy Da Rocha Bazilio (lizzydrb@gmail.com).
+
+        <br><br>
+        Please conduct this study on a <b>laptop or computer</b> and <b>do not refresh</b> the page during the game!
+
+    {{formfield 'consent'}}
+
+    </p>
+    {{ next_button }}
+{{ endblock }}
