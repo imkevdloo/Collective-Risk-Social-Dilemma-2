@@ -3,8 +3,6 @@ import itertools
 
 from otree.api import *
 
-c = Currency
-
 doc = """
 Welcome page with consent form and instructions.
 """
@@ -27,17 +25,17 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     consent = models.IntegerField(
-        choices=[[1, 'I consent, I would like to participate'], [2, 'I do not consent, I do not wish to participate']],
+        choices=[
+        [1, 'I consent, I would like to participate'], [2, 'I do not consent, I do not wish to participate']
+        ],
         widget=widgets.RadioSelect,
-        label="By choosing to consent below, you acknowledge that you have read and agree to the information provided "
-              "above. You hereby acknowledge that you are at least 18 years old, your participation in the study is "
-              "voluntary and you are aware that you may choose to terminate your participation at any time for any "
-              "reason without any consequences.")
-
+        label="By choosing to consent below, you acknowledge that you have read and agree to the information provided above. You hereby acknowledge that you are at least 18 years old, your participation in the study is voluntary and you are aware that you may choose to terminate your participation at any time for any reason without any consequences.",
+    )
     treatment = models.StringField()
     forest = models.IntegerField(label="As a check, how many trees are there in the forest at the start of the game?")
     sold_products = models.IntegerField(min=0, max=40)
     profit_total = models.FloatField()
+    eco_status = models.StringField()
 
 
 def creating_session(subsession):
@@ -45,12 +43,13 @@ def creating_session(subsession):
         for player in subsession.get_players():
             participant = player.participant
             participant.treatment = random.choice(Constants.treatments)
+            print(participant.treatment)
 
 
 # PAGES
 class Welcome(Page):
     form_model = 'player'
-    form_fields = 'consent'
+    form_fields = ['consent']
 
 
 class InstructionsMECO(Page):
@@ -68,11 +67,10 @@ class InstructionsSECO(Page):
 
 
 class InstructionsControl(Page):
-    class InstructionsSECO(Page):
-        @staticmethod
-        def is_displayed(player):
-            participant = player.participant
-            return participant.treatment == 'Control'
+    @staticmethod
+    def is_displayed(player):
+        participant = player.participant
+        return participant.treatment == 'Control'
 
 
 class Check(Page):
@@ -83,10 +81,12 @@ class Check(Page):
     def before_next_page(player, timeout_happened):
         player.sold_products = 0
         player.profit_total = 0
+        player.eco_status = "Eco-label status: Yes!"
         participant = player.participant
         participant.forest = player.forest
         participant.sold_products = player.sold_products
         participant.profit_total = player.profit_total
+        participant.eco_status = player.eco_status
 
 
 page_sequence = [Welcome, InstructionsMECO, InstructionsSECO, InstructionsControl, Check]

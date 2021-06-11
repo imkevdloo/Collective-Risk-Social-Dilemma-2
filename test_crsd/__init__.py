@@ -4,7 +4,6 @@ from otree.api import *
 from otree.models import player
 import itertools
 
-c = Currency
 
 doc = """
 Test CRSD
@@ -14,7 +13,7 @@ Test CRSD
 class Constants(BaseConstants):
     name_in_url = 'test_crsd'
     players_per_group = None
-    num_rounds = 5
+    num_rounds = 10
     regrowth_rate = 8
     withdrawal_decisions = [0, 1, 2, 3, 4]
     treatments = ['MECO', 'SECO']
@@ -57,22 +56,23 @@ def set_group_withdrawal(player):
 
 def set_forest(player):
     participant = player.participant
-    participant.forest = participant.forest - participant.group_withdrawal# + Constants.regrowth_rate
+    participant.forest = participant.forest - participant.group_withdrawal + Constants.regrowth_rate
     return participant.forest
 
 
 def set_eco_status(player):
     participant = player.participant
     if participant.treatment == 'MECO' or participant.treatment == 'SECO':
-        print(participant.treatment)
-        if participant.withdrawal_player <= 2:
-            participant.eco_status = "Eco-label status: Yes!"
-            print("Yes")
+        if participant.eco_status == "Eco-label status: Yes!":
+            if participant.withdrawal_player <= 2:
+                participant.eco_status = "Eco-label status: Yes!"
+                print("Yes")
+            else:
+                participant.eco_status = "Eco-label status: No!"
+                print("No")
         else:
             participant.eco_status = "Eco-label status: No!"
-            print("No")
     else:
-        print(participant.treatment)
         participant.eco_status = " "
     return participant.eco_status
 

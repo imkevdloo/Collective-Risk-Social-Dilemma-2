@@ -1,9 +1,8 @@
 from otree.api import *
 
-c = Currency
 
 doc = """
-Your app description
+Concluding survey of the experiment
 """
 
 
@@ -22,20 +21,18 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    age = models.IntegerField()
+    gender = models.StringField()
+
 
 
 # PAGES
-class MyPage(Page):
+class Survey(Page):
     pass
 
 
-class ResultsWaitPage(WaitPage):
+class Thankyou(Page):
     pass
 
 
-class Results(Page):
-    pass
-
-
-page_sequence = [MyPage, ResultsWaitPage, Results]
+page_sequence = [Survey, Thankyou]
