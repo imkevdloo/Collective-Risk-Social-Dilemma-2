@@ -21,14 +21,76 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    age = models.IntegerField()
-    gender = models.StringField()
-
+    age = models.IntegerField(label="Please enter your age:", min=18, max=100)
+    gender = models.IntegerField(
+        choices=[
+        [1, 'Female'],
+        [2, 'Male'],
+        [3, 'Non-binary'],
+        [4, 'Prefer not to say'],
+        [5, 'Other']
+        ],
+        label="Please select your gender:",
+        )
+    nationality = models.StringField(label="Please enter your nationality:")
+    education = models.IntegerField(
+        choices=[
+        [1, 'Primary school'],
+        [2, 'High school or equivalent'],
+        [3, 'Bachelor degree'],
+        [4, 'Master degree'],
+        [5, 'Other']
+        ],
+        label="What is the highest level of education that you have completed?:",
+        )
+    occupation = models.IntegerField(
+        choices=[
+        [1, 'Student'],
+        [2, 'Working'],
+        [3, 'Other'],
+        ],
+        label="What is your main occupation?:",
+        )
+    deforestation_knowledge = models.IntegerField(
+        choices=[
+        [1, 'Very high'],
+        [2, 'Above average'],
+        [3, 'Average'],
+        [4, 'Below average'],
+        [5, 'Very low']
+        ],
+        label="My knowledge about deforestation and the environment is:",
+        widget=widgets.RadioSelect
+        )
+    environment_importance = models.IntegerField(
+        choices=[
+        [1, 'Very important'],
+        [2, 'Important'],
+        [3, 'Moderately important'],
+        [4, 'Slightly important'],
+        [5, 'Not important']
+        ],
+        label="I find the environment:",
+        widget=widgets.RadioSelect
+        )
 
 
 # PAGES
 class Survey(Page):
-    pass
+    form_model = 'player'
+    form_fields = ['age', 'nationality', 'gender', 'education', 'occupation',
+                   'deforestation_knowledge', 'environment_importance']
+
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        player.age = player.age
+        player.nationality = player.nationality
+        player.gender = player.gender
+        player.education = player.education
+        player.occupation = player.occupation
+        player.deforestation_knowledge = player.deforestation_knowledge
+        player.environment_importance = player.environment_importance
+
 
 
 class Thankyou(Page):

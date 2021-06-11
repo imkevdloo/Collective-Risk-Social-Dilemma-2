@@ -31,7 +31,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     treatment = models.CharField()
-    withdrawal_player = models.IntegerField(min=0, max=4, label="How many trees would you like to withdraw?")
+    withdrawal_player = models.IntegerField(label="How many trees would you like to withdraw?")
     p2 = models.IntegerField(min=0, max=4)
     p3 = models.IntegerField(min=0, max=4)
     p4 = models.IntegerField(min=0, max=4)
@@ -73,7 +73,7 @@ def set_eco_status(player):
         else:
             participant.eco_status = "Eco-label status: No!"
     else:
-        participant.eco_status = " "
+        participant.eco_status = ""
     return participant.eco_status
 
 
@@ -109,6 +109,12 @@ class Decision(Page):
         return participant.forest > 0
 
     @staticmethod
+    def error_message(player, values):
+        print('values is', values)
+        if values['withdrawal_player'] not in Constants.withdrawal_decisions:
+            return 'Please fill in either 0, 1, 2, 3 or 4'
+
+    @staticmethod
     def before_next_page(player, timeout_happened):
         participant = player.participant
         participant.withdrawal_player = player.withdrawal_player
@@ -126,6 +132,10 @@ class GameOver(Page):
         participant = player.participant
         return participant.forest <= 0
 
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        player.round_number = player.round_number
+
 
 class Results(Page):
     @staticmethod
@@ -133,5 +143,14 @@ class Results(Page):
         participant = player.participant
         return participant.forest > 0
 
+class EndGame(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 10 or player.participant.forest <= 0
 
-page_sequence = [Decision, GameOver, Results]
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        player.round_number = player.round_number
+
+
+page_sequence = [Decision, GameOver, Results, EndGame]

@@ -1,21 +1,21 @@
 {{ block content }}
     <style>
         .center {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 50%;
-    }
-
-    p {
-      text-align: justify;
-      text-justify: inter-word;
-    }
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+        p {
+            text-align: justify;
+            text-justify: inter-word;
+        }
     </style>
 
-<img src="{{ static 'test_instructions/UvA-logo.png' }}" class="center" alt=""/>
+    <img src="{{ static 'UvA-Logo.png' }}" class="center"/>
 
     <p>
+        <br><br>
         Dear participant,
         <br><br>
         Welcome and thank you for participating in this experiment!
@@ -41,6 +41,11 @@
 
         <br><br>
         Please conduct this study on a <b>laptop or computer</b> and <b>do not refresh</b> the page during the game!
+
+        <br><br>
+        By choosing to consent below, you acknowledge that you have read and agree to the information provided above.
+        You hereby acknowledge that you are at least 18 years old, your participation in the study is voluntary
+        and you are aware that you may choose to terminate your participation at any time for any reason without any consequences.
 
     {{formfield 'consent'}}
 

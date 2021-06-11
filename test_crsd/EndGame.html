@@ -1,0 +1,24 @@
+{{ block title }}
+    End of the game!
+{{ endblock }}
+
+{{ block content }}
+
+    <p>
+        The game has ended! You and your group played {{ player.round_number }} rounds.
+        <br> <br>
+        In total, you have withdrawn: {{ player.participant.sold_products }} trees.
+        <br>
+        Your production was sustainable/not sustainable, so your product will/will not have an eco-label!
+        <br>
+        Your total profit is: {{ player.participant.profit_total }}
+        <br>
+        <br>
+        Please proceed to the next page for a concluding questionnaire.
+
+    </p>
+
+    {{ next_button }}
+{{ endblock }}
+
+

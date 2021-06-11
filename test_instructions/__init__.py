@@ -29,10 +29,10 @@ class Player(BasePlayer):
         [1, 'I consent, I would like to participate'], [2, 'I do not consent, I do not wish to participate']
         ],
         widget=widgets.RadioSelect,
-        label="By choosing to consent below, you acknowledge that you have read and agree to the information provided above. You hereby acknowledge that you are at least 18 years old, your participation in the study is voluntary and you are aware that you may choose to terminate your participation at any time for any reason without any consequences.",
     )
     treatment = models.StringField()
-    forest = models.IntegerField(label="As a check, how many trees are there in the forest at the start of the game?")
+    forest = models.IntegerField(label="How many trees are there in the forest at the start of the game?")
+    check_threshold = models.IntegerField(label="The game ends when the forest reaches ... trees.")
     sold_products = models.IntegerField(min=0, max=40)
     profit_total = models.FloatField()
     eco_status = models.StringField()
@@ -75,7 +75,13 @@ class InstructionsControl(Page):
 
 class Check(Page):
     form_model = 'player'
-    form_fields = ['forest']
+    form_fields = ['forest', 'check_threshold']
+
+    @staticmethod
+    def error_message(player, values):
+        print('values is', values)
+        if values['forest'] != 20 or values['check_threshold'] != 0:
+            return 'One or more of your answers are not correct. Please try again!'
 
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -89,4 +95,8 @@ class Check(Page):
         participant.eco_status = player.eco_status
 
 
-page_sequence = [Welcome, InstructionsMECO, InstructionsSECO, InstructionsControl, Check]
+class ReadyToStart(Page):
+    pass
+
+
+page_sequence = [Welcome, InstructionsMECO, InstructionsSECO, InstructionsControl, Check, ReadyToStart]
