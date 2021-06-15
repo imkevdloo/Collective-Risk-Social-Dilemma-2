@@ -3,27 +3,79 @@
 {{ endblock }}
 
 {{ block content }}
-    <p>
-        You are about to play a Collective Risk Social Dilemma. Please read the instructions carefully before you start the game!
-        <br><br>
-        The game is played by <b>4 players</b>. Together with the other players, you share a shared common forest.
-        At the start of the game, the forest contains <b>20 trees</b>. The game is played for <b>10 rounds</b>.
-        In each round, all of the players choose how many trees to withdraw from the common forest.
-        The trees you withdraw will convert into your profit at the end of the game. Every withdrawn tree equals 0.5 profit.
-        You have the option to withdraw either <b>0, 1, 2, 3 or 4 trees</b>.
-        The regrowth rate of the forest is <b>8 trees per round</b>. This means that in each round, 8 new trees are added to the forest.
-        <br><br>
-        During the game you have the opportunity to earn an eco-label! Your production must be sustainable to earn the eco-label.
-        If you withdraw 0, 1 or 2 tree(s) in every round, your production is considered sustainable.
-        Once you withdraw more than 2 trees in any round,
-        your production is not sustainable anymore, for the rest of the game.
-        If you earn the eco-label, your profit per tree will remain the same.
-        <br><br>
-        BE WARE! When the forest reaches 0 trees, you and the other players have exploited the forest.
-        If this happens, the forest dies and the game ends. If the game ends before completing 10 rounds,
-        all players will loose their profits.
-    </p>
+<p>
+    Please read the instructions carefully before you start the game!
+    <br><br>
+    The game is played by <b>4 players</b> in total: you and 3 computerized players.
+    The computerized players' choices are based on average players, as well your choices.
+    Together with the other players, you share a shared common forest.
+    At the start of the game, the forest contains <b>20 trees</b>. The game is played for <b>10 rounds</b>.
+    In each round, all of the players choose how many trees to remove from the common forest.
+    The trees you remove will convert into your profit at the end of the game. Every removed tree equals 0.5 profit.
+    You have the option to remove either <b>0, 1, 2, 3 or 4 trees</b>.
+    The regrowth rate of the forest is <b>8 trees per round</b>.
+    This means that in each round, 8 new trees are added to the forest.
+    <br><br>
+    During the game you have the opportunity to earn an eco-label! Your production must be sustainable to earn the eco-label.
+    If you remove 0, 1 or 2 tree(s) in every round, your production is considered sustainable.
+    Once you remove more than 2 trees in any round,
+    your production is not sustainable anymore, for the rest of the game.
+    If you earn the eco-label, your profit per tree will remain the same.
+    <br><br>
+    <b>BE WARE!</b> When the forest reaches 0 trees, you and the other players have exploited the forest.
+    If this happens, the forest dies and the game ends. If the game ends before completing 10 rounds,
+    all players will loose their profits.
+</p>
 
+<h3>Example!</h3>
+<p>
+    Let's say you have removed the following number of trees:
+    <br>
+<table style="width:40%">
+    <tr>
+        <th>Round</th>
+        <th>Tree removal</th>
+        <th>Profit</th>
+    </tr>
+    <tr>
+        <td>Round 1</td>
+        <td>2</td>
+        <td>1.0</td>
+    </tr>
+    <tr>
+        <td>Round 2</td>
+        <td>3</td>
+        <td>1.5</td>
+    </tr>
+    <tr>
+        <td>Round 3</td>
+        <td>4</td>
+        <td>2.0</td>
+    </tr>
+    <tr>
+        <td>Round 4</td>
+        <td>1</td>
+        <td>0.5</td>
+    </tr>
+    <tr>
+        <td>Round 5</td>
+        <td>4</td>
+        <td>2.0</td>
+    </tr>
+</table>
+    <br>
+    After round 5 the forest has 0 trees left and the game ends. <br><br>
+    This means that you have <b>removed 14 trees</b> from the forest in total. <br>
+    This will give you a <b>profit of 7</b>. <br>
+    Your production process is not considered sustainable. <br><br>
+</p>
+
+<h3>Are the instructions clear?</h3>
+<p>
+    To check whether you read and understood the instructions, please answer in the following questions.
+    <br>
+    {{ formfields }}
+</p>
     {{ next_button }}
 {{ endblock }}
 

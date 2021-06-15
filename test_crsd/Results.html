@@ -1,31 +1,17 @@
-<link href="{% static 'global/VT_functionality.css' %}" rel="stylesheet">
-<script src="{% static 'global/VT_functionality.js' %}"></script>
-
 {{ block title }}
     Round {{ player.round_number }}: Summary
 {{ endblock }}
 
 {{ block content }}
     <p>
-        You have chosen to withdraw {{ player.participant.withdrawal_player }} tree(s).
+        You have chosen to remove {{ player.participant.tree_removal_player}} tree(s).
         <br>
-        In total, the group has withdrawn {{ player.participant.group_withdrawal }} tree(s).
+        In total, the group has removed {{ player.participant.group_withdrawal }} tree(s).
         <br><br>
     </p>
 
     {{ next_button }}
 
-<script>
-    document.addEventListener("DOMContentLoaded", function(debug=true) {
-        InitializeVT(document.getElementsByClassName('otree-body')[0]);
-        // Convert all buttons with the class 'clickable' into click VT buttons
-        // ConvertButtons2VT('clickable',sActivation='click');
-        // Convert all buttons with the class 'mousy' into mouseover VT buttons
-        ConvertButtons2VT('mousy',sActivation='mouseover');
-        // Convert all buttons with the class 'row' into click VT buttons that activate outcome-buttons with the class 'r1'
-        // ConvertButtons2VT('row',sActivation='click', 'r1');
-    });
-</script>
 {{ endblock }}
 
 

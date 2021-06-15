@@ -156,6 +156,7 @@ function AddVisualTracer(btn,sActivation='click',sDisplayClass) {
 
   } else if (sActivation=='mouseover') {
     // mouseover
+    console.log(btn)
     btn.addEventListener('mouseover', function() {
       // Check that new element is pressed
       if (btn.id != sPreviousPress) {
