@@ -21,7 +21,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 PARTICIPANT_FIELDS = ['treatment', 'tree_removal_player', 'group_withdrawal', 'total_group_withdrawal', 'forest',
                       'eco_status',
                       'sold_products', 'profit_round', 'profit_total', 'sustainable_production', 'sButtonClick',
-                      'sTimeClick']
+                      'sTimeClick', 'game_over']
 SESSION_FIELDS = []
 
 # ISO-639 code

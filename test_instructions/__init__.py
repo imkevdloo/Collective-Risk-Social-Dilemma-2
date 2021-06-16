@@ -43,6 +43,8 @@ class Player(BasePlayer):
     total_group_withdrawal = models.IntegerField()
     profit_total = models.FloatField()
     eco_status = models.StringField()
+    tree_certificate = models.StringField(label="E-mail address:", blank=True)
+    profit_certificate = models.StringField(label="E-mail address:", blank=True)
 
 
 def creating_session(subsession):
@@ -61,7 +63,7 @@ class Welcome(Page):
 
 class InstructionsMECO(Page):
     form_model = 'player'
-    form_fields = ['forest', 'check_threshold', 'check_profit_MECO']
+    form_fields = ['tree_certificate', 'profit_certificate', 'forest', 'check_threshold', 'check_profit_MECO']
 
     @staticmethod
     def is_displayed(player):
@@ -71,7 +73,7 @@ class InstructionsMECO(Page):
     @staticmethod
     def error_message(player, values):
         print('values is', values)
-        if values['forest'] != 20 or values['check_threshold'] != 0 or values['check_profit_MECO'] != 3.25:
+        if values['forest'] != 20 or values['check_threshold'] != 0 or values['check_profit_MECO'] != 3.125:
             return 'One or more of your answers are not correct. Please try again!'
 
     @staticmethod
@@ -89,7 +91,7 @@ class InstructionsMECO(Page):
 
 class InstructionsSECO(Page):
     form_model = 'player'
-    form_fields = ['forest', 'check_threshold', 'check_profit_SECO']
+    form_fields = ['tree_certificate', 'profit_certificate', 'forest', 'check_threshold', 'check_profit_SECO']
 
     @staticmethod
     def is_displayed(player):
@@ -117,7 +119,7 @@ class InstructionsSECO(Page):
 
 class InstructionsControl(Page):
     form_model = 'player'
-    form_fields = ['forest', 'check_threshold', 'check_profit_Control']
+    form_fields = ['tree_certificate', 'profit_certificate', 'forest', 'check_threshold', 'check_profit_Control']
 
     @staticmethod
     def is_displayed(player):

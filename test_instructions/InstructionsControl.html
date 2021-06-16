@@ -39,6 +39,12 @@
     <b>BE WARE!</b> When the forest reaches 0 trees, you and the other players have exploited the forest.
     If this happens, the forest dies and the game ends. This means that there are no rounds left to remove trees and earn a profit.
     <br><br>
+    All the trees that remain in the forest at the end of the game, will be planted in real life.
+    If you would like to receive a certificate of the trees that we planted, please fill in your e-mail address below:
+    {{ formfield 'tree_certificate' }}
+    Of all participants, one will be randomly chosen of which the profit will be paid out.
+    If you would like to have a chance to receive your profit, please fill in your e-mail address below:
+    {{ formfield 'profit_certificate' }}
 </p>
 
 <h3>Example!</h3>
@@ -88,7 +94,9 @@
 <p>
     To check whether you read and understood the instructions, please answer in the following questions.
     <br>
-    {{ formfields }}
+    {{ formfield 'forest' }}
+    {{ formfield 'check_threshold' }}
+    {{ formfield 'check_profit_Control'  }}
 </p>
 
     {{ next_button }}

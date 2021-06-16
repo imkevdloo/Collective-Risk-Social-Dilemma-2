@@ -4,7 +4,6 @@ from otree.api import *
 from otree.models import player
 import itertools
 
-
 doc = """
 Test CRSD
 """
@@ -45,15 +44,16 @@ class Player(BasePlayer):
     sustainable_production = models.LongStringField()
     sButtonClick = models.StringField(label="")
     sTimeClick = models.StringField(label="")
+    game_over = models.IntegerField(min=0, max=1)
 
 
 # FUNCTIONS
 def set_group_withdrawal(player):
     participant = player.participant
     participant.tree_removal_player = participant.tree_removal_player
-    player.p2 = random.choice(Constants.removal_decisions) # always sustainable (0, 1, 2)
-    player.p3 = random.choice(Constants.removal_decisions) # always selfish (3, 4)
-    player.p4 = random.choice(Constants.removal_decisions) # group_withdrawal > 10 --> 3 or 4,
+    player.p2 = 4  # random.choice(Constants.removal_decisions) # always sustainable (0, 1, 2)
+    player.p3 = 4  # random.choice(Constants.removal_decisions) # always selfish (3, 4)
+    player.p4 = 4  # random.choice(Constants.removal_decisions) # group_withdrawal > 10 --> 3 or 4,
     participant.group_withdrawal = player.p2 + player.p3 + player.p4 + participant.tree_removal_player
     return participant.group_withdrawal
 
@@ -146,6 +146,7 @@ class DecisionEco(Page):
         participant.profit_total = set_profit_total(player)
         participant.sButtonClick = player.sButtonClick
         participant.sTimeClick = player.sTimeClick
+        participant.game_over = 0
 
 
 class DecisionControl(Page):
@@ -177,17 +178,19 @@ class DecisionControl(Page):
         participant.sustainable_production = set_sustainable_production(player)
         participant.sButtonClick = player.sButtonClick
         participant.sTimeClick = player.sTimeClick
+        participant.game_over = 0
 
 
 class GameOver(Page):
     @staticmethod
     def is_displayed(player):
         participant = player.participant
-        return participant.forest <= 0
+        return participant.forest <= 0 and participant.game_over == 0
 
     @staticmethod
     def before_next_page(player, timeout_happened):
         player.round_number = player.round_number
+        player.participant.game_over = 1
 
 
 class Results(Page):
