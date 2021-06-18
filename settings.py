@@ -18,10 +18,8 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
 )
 
-PARTICIPANT_FIELDS = ['treatment', 'tree_removal_player', 'p2', 'p3', 'p4', 'group_removal', 'profit_group',
-                      'total_group_removal', 'profit_group_total', 'forest',
-                      'eco_status', 'sold_products', 'profit_round', 'profit_total', 'sButtonClick', 'sTimeClick',
-                      'game_over']
+PARTICIPANT_FIELDS = ['treatment', 'trees_player_round', 'eco_status', 'trees_player_total', 'trees_p2', 'trees_p3', 'trees_p4', 'trees_group_round', 'trees_group_total',
+                        'forest', 'points_player_round', 'points_player_total', 'points_group_round', 'points_group_total', 'game_over', 'sButtonClick', 'sTimeClick', 'profit_player_total']
 SESSION_FIELDS = []
 
 # ISO-639 code

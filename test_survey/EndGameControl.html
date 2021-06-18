@@ -7,9 +7,11 @@
     <p>
         The game has ended! You and your group played {{ player.round_number }} rounds.
         <br> <br>
-        In total, you have removed: {{ player.participant.sold_products }} trees.
+        In total, you cut down: {{ player.participant.trees_player_total}} trees.
         <br><br>
-        Your total profit is: {{ player.participant.profit_total }}
+        Total points: {{ player.participant.points_player_total }}
+        <br><br>
+        Total profit: {{ player.participant.profit_player_total }}
         <br><br>
         There are {{ player.participant.forest }} trees left in the forest. These will be planted!
         <br><br>

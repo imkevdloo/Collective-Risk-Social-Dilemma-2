@@ -1,0 +1,29 @@
+{{ block title }}
+    End of the game!
+{{ endblock }}
+
+{{ block content }}
+
+    <p>
+        The game has ended.
+        <br> <br>
+        In total, you cut down: {{ player.participant.trees_player_total}} trees.
+        <br><br>
+        Eco-label status: {{ player.participant.eco_status }}
+        <br><br>
+        Total points: {{ player.participant.points_player_total }}
+        <br><br>
+        Total profit: {{ player.participant.profit_player_total }}
+        <br><br>
+        There are {{ player.participant.forest }} trees left in the forest. If there are any trees left, these will be planted!
+        <br><br>
+        Please proceed to the next page for a concluding questionnaire.
+    </p>
+
+    {{ next_button }}
+{{ endblock }}
+
+
+
+
+

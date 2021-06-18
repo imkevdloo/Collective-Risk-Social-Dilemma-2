@@ -6,16 +6,23 @@
 {{ endblock }}
 
 {{ block content }}
+<tr>
+
+    <input type ="hidden" id="tTeatment" value="{{player.participant.treatment}}">
+    <input type ="hidden" id="Points player total" value="{{player.participant.points_player_total}}">
+
+</tr>
+
     <p>
         Hover over the blocks to reveal the information. You must hover over at least one block before you can proceed to the next round.
         <br><br><br>
-        Your total removal of trees: <button type="button" class="mousy hidden button-outcome" id="y"> {{ player.participant.sold_products }} </button>
+        Total trees you cut down: <button type="button" class="mousy hidden button-outcome" id="y"> {{ player.participant.trees_player_total }} </button>
         <br><br>
-        Your total points: <button type="button" class="mousy hidden button-outcome" id="profit"> {{ player.participant.profit_total }} </button>
+        Total points you have earned: <button type="button" class="mousy hidden button-outcome" id="profit"> {{ player.participant.points_player_total }} </button>
         <br><br><br>
-        Total removal of trees of the group (including yourself): <button type="button" class="mousy hidden button-outcome" id="sumy"> {{ player.participant.total_group_removal }} </button>
+        Total trees group (including yourself) cut down: <button type="button" class="mousy hidden button-outcome" id="sumy"> {{ player.participant.trees_group_total }} </button>
         <br><br>
-        Total points of the group (including yourself): <button type="button" class="mousy hidden button-outcome" id="sum_profit"> {{ player.participant.profit_group_total }} </button>
+        Total points of the group (including yourself): <button type="button" class="mousy hidden button-outcome" id="sum_profit"> {{ player.participant.points_group_total }} </button>
         <br><br><br>
         Trees left in the common forest: <button type="button" class="mousy hidden button-outcome" id="x"> {{ player.participant.forest }} </button>
         <br><br>
@@ -29,12 +36,8 @@
         document.getElementById('sButtonClick').type = 'hidden'
         document.getElementById('sTimeClick').type = 'hidden'
         InitializeVT(document.getElementsByClassName('otree-body')[0]);
-        // Convert all buttons with the class 'clickable' into click VT buttons
-        // ConvertButtons2VT('clickable',sActivation='click');
         // Convert all buttons with the class 'mousy' into mouseover VT buttons
         ConvertButtons2VT('mousy',sActivation='mouseover');
-        // Convert all buttons with the class 'row' into click VT buttons that activate outcome-buttons with the class 'r1'
-        // ConvertButtons2VT('row',sActivation='click', 'r1');
     });
 </script>
 

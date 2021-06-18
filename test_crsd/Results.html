@@ -4,11 +4,13 @@
 
 {{ block content }}
     <p>
-        You have chosen to remove {{ player.participant.tree_removal_player}} tree(s) from the common forest.
+        <u>In round {{ player.round_number }}:</u>
         <br><br>
-        In total, the group (including yourself) has removed {{ player.participant.group_removal }} tree(s) from the common forest.
+        You have chosen to cut down {{ player.participant.trees_player_round}} tree(s) from the common forest.
         <br><br>
-        In total, the group (including yourself) has earned {{ player.participant.profit_group_total }} points.
+        The group (including yourself) cut down {{ player.participant.trees_group_round }} trees from the common forest.
+        <br><br>
+        The group (including yourself) has earned {{ player.participant.points_group_round }} points.
     </p>
 
     {{ next_button }}

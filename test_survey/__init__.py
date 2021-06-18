@@ -79,7 +79,20 @@ class Player(BasePlayer):
         label="If you would like to have a chance to receive your profit, please fill in your e-mail address:", blank=True)
 
 
+
 # PAGES
+class EndGameControl(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.participant.treatment == 'Control' #and (player.round_number == 10 or player.participant.forest <= 0)
+
+
+class EndGameEco(Page):
+    @staticmethod
+    def is_displayed(player):
+        return (player.participant.treatment == 'MECO' or player.participant.treatment == 'SECO') #and (player.round_number == 10 or player.participant.forest <= 0)
+
+
 class Survey(Page):
     form_model = 'player'
     form_fields = ['age', 'nationality', 'gender', 'education', 'occupation',
@@ -101,4 +114,4 @@ class Thankyou(Page):
     pass
 
 
-page_sequence = [Survey, Thankyou]
+page_sequence = [EndGameControl, EndGameEco, Survey, Thankyou]
