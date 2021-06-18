@@ -135,6 +135,19 @@ def set_profit(player):
     return participant.profit_player_total
 
 
+def custom_export(players):
+    yield ['session', 'trees_player_round', 'eco_status', 'trees_player_total', 'trees_p2']
+    for player in players:
+        participant = player.participant
+        session = player.session
+        yield [session.code, participant.code, participant.trees_player_round, participant.eco_status,
+               participant.trees_player_total, participant.get('trees_p2')]
+
+
+def participant_to_player(player):
+    player.eco_status = player.participant.eco_status
+    player.trees_p2 = player.participant.trees_p2
+
 
 # PAGES
 class DecisionControl(Page):
