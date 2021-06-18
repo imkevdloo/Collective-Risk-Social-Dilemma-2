@@ -26,25 +26,23 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     consent = models.IntegerField(
         choices=[
-        [1, 'I consent, I would like to participate'], [2, 'I do not consent, I do not wish to participate']
-        ],
+        [1, 'I consent, I would like to participate']
         widget=widgets.RadioSelect,
     )
     treatment = models.StringField()
     forest = models.IntegerField(label="How many trees are there in the forest at the start of the game?")
-    check_threshold = models.IntegerField(label="The game ends when the forest reaches ... trees.")
+    check_threshold = models.IntegerField(label="The game ends after 10 rounds or when the forest has ... trees left.")
     check_profit_Control = models.FloatField(label="If you have removed a total of 16 trees at the end of the game,"
-                                                   "what will your total profit be?")
-    check_profit_MECO = models.FloatField(label="You have removed 1 tree in round 1, 4 trees in round 2, and 1 tree in round 3."
-                                                "What is your profit at the end of round 3?")
+                                                   " what will your total profit be?")
+    check_profit_MECO = models.FloatField(label="You have removed 1 tree in round 1, 4 trees in round 2, and 1 tree in round 3. "
+                                                "How many points did you earn at the end of round 3?")
     check_profit_SECO = models.FloatField(label="You have removed 1 tree in round 1, 4 trees in round 2, and 1 tree in round 3."
-                                                "What is your profit at the end of round 3?")
+                                                "How many points did you earn at the end of round 3?")
     sold_products = models.IntegerField(min=0, max=40)
-    total_group_withdrawal = models.IntegerField()
+    total_group_removal = models.IntegerField()
+    profit_group_total = models.FloatField()
     profit_total = models.FloatField()
     eco_status = models.StringField()
-    tree_certificate = models.StringField(label="E-mail address:", blank=True)
-    profit_certificate = models.StringField(label="E-mail address:", blank=True)
 
 
 def creating_session(subsession):
@@ -63,7 +61,7 @@ class Welcome(Page):
 
 class InstructionsMECO(Page):
     form_model = 'player'
-    form_fields = ['tree_certificate', 'profit_certificate', 'forest', 'check_threshold', 'check_profit_MECO']
+    form_fields = ['forest', 'check_threshold', 'check_profit_MECO']
 
     @staticmethod
     def is_displayed(player):
@@ -73,7 +71,7 @@ class InstructionsMECO(Page):
     @staticmethod
     def error_message(player, values):
         print('values is', values)
-        if values['forest'] != 20 or values['check_threshold'] != 0 or values['check_profit_MECO'] != 3.125:
+        if values['forest'] != 20 or values['check_threshold'] != 0 or values['check_profit_MECO'] != 3.25:
             return 'One or more of your answers are not correct. Please try again!'
 
     @staticmethod
@@ -83,7 +81,8 @@ class InstructionsMECO(Page):
         player.eco_status = "Yes"
         participant = player.participant
         participant.forest = player.forest
-        participant.total_group_withdrawal = 0
+        participant.total_group_removal = 0
+        participant.profit_group_total = 0
         participant.sold_products = player.sold_products
         participant.profit_total = player.profit_total
         participant.eco_status = player.eco_status
@@ -91,7 +90,7 @@ class InstructionsMECO(Page):
 
 class InstructionsSECO(Page):
     form_model = 'player'
-    form_fields = ['tree_certificate', 'profit_certificate', 'forest', 'check_threshold', 'check_profit_SECO']
+    form_fields = ['forest', 'check_threshold', 'check_profit_SECO']
 
     @staticmethod
     def is_displayed(player):
@@ -111,7 +110,8 @@ class InstructionsSECO(Page):
         player.eco_status = "Yes"
         participant = player.participant
         participant.forest = player.forest
-        participant.total_group_withdrawal = 0
+        participant.total_group_removal = 0
+        participant.profit_group_total = 0
         participant.sold_products = player.sold_products
         participant.profit_total = player.profit_total
         participant.eco_status = player.eco_status
@@ -119,7 +119,7 @@ class InstructionsSECO(Page):
 
 class InstructionsControl(Page):
     form_model = 'player'
-    form_fields = ['tree_certificate', 'profit_certificate', 'forest', 'check_threshold', 'check_profit_Control']
+    form_fields = ['forest', 'check_threshold', 'check_profit_Control']
 
     @staticmethod
     def is_displayed(player):
@@ -139,10 +139,12 @@ class InstructionsControl(Page):
         player.eco_status = "Yes"
         participant = player.participant
         participant.forest = player.forest
-        participant.total_group_withdrawal = 0
+        participant.total_group_removal = 0
+        participant.profit_group_total = 0
         participant.sold_products = player.sold_products
         participant.profit_total = player.profit_total
         participant.eco_status = player.eco_status
+
 
 class ReadyToStart(Page):
     pass

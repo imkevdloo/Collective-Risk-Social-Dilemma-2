@@ -7,15 +7,17 @@
 
 {{ block content }}
     <p>
-        Hover over the blocks to reveal the information.
+        Hover over the blocks to reveal the information. You must hover over at least one block before you can proceed to the next round.
+        <br><br><br>
+        Your total removal of trees: <button type="button" class="mousy hidden button-outcome" id="y"> {{ player.participant.sold_products }} </button>
         <br><br>
-        Total removal of trees: <button type="button" class="mousy hidden button-outcome" id="y"> {{ player.participant.sold_products }} </button>
-        <br>
-        Total removal of trees of the group: <button type="button" class="mousy hidden button-outcome" id="sumy"> {{ player.participant.total_group_withdrawal }} </button>
-        <br>
-        Total profit: <button type="button" class="mousy hidden button-outcome" id="profit"> {{ player.participant.profit_total }} </button>
+        Your total points: <button type="button" class="mousy hidden button-outcome" id="profit"> {{ player.participant.profit_total }} </button>
+        <br><br><br>
+        Total removal of trees of the group (including yourself): <button type="button" class="mousy hidden button-outcome" id="sumy"> {{ player.participant.total_group_removal }} </button>
         <br><br>
-        Trees in the common forest: <button type="button" class="mousy hidden button-outcome" id="x"> {{ player.participant.forest }} </button>
+        Total points of the group (including yourself): <button type="button" class="mousy hidden button-outcome" id="sum_profit"> {{ player.participant.profit_group_total }} </button>
+        <br><br><br>
+        Trees left in the common forest: <button type="button" class="mousy hidden button-outcome" id="x"> {{ player.participant.forest }} </button>
         <br><br>
     </p>
 

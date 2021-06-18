@@ -1,13 +1,14 @@
 {{ block title }}
-    Round {{ player.round_number }}: Summary
+    Round {{ player.round_number }}: Results
 {{ endblock }}
 
 {{ block content }}
     <p>
-        You have chosen to remove {{ player.participant.tree_removal_player}} tree(s).
-        <br>
-        In total, the group has removed {{ player.participant.group_withdrawal }} tree(s).
+        You have chosen to remove {{ player.participant.tree_removal_player}} tree(s) from the common forest.
         <br><br>
+        In total, the group (including yourself) has removed {{ player.participant.group_removal }} tree(s) from the common forest.
+        <br><br>
+        In total, the group (including yourself) has earned {{ player.participant.profit_group_total }} points.
     </p>
 
     {{ next_button }}

@@ -73,13 +73,17 @@ class Player(BasePlayer):
         label="I find the environment:",
         widget=widgets.RadioSelect
         )
+    tree_certificate = models.StringField(
+        label="If you would like to receive a certificate of the trees that we planted, please fill in your e-mail address:", blank=True)
+    profit_certificate = models.StringField(
+        label="If you would like to have a chance to receive your profit, please fill in your e-mail address:", blank=True)
 
 
 # PAGES
 class Survey(Page):
     form_model = 'player'
     form_fields = ['age', 'nationality', 'gender', 'education', 'occupation',
-                   'deforestation_knowledge', 'environment_importance']
+                   'deforestation_knowledge', 'environment_importance', 'tree_certificate', 'profit_certificate']
 
     @staticmethod
     def before_next_page(player, timeout_happened):
