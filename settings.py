@@ -13,7 +13,6 @@ ROOMS = [
     dict(
         name='NE2021',
         display_name='MSc Neuroecononomics Thesis Experiment',
-        participant_label_file='_rooms/MScNeuroeconomics.txt',
         use_secure_urls=True
     ),
 ]
