@@ -13,7 +13,7 @@ ROOMS = [
     dict(
         name='NE2021',
         display_name='MSc Neuroecononomics Thesis Experiment',
-        use_secure_urls=True
+        #use_secure_urls=True
     ),
 ]
 
