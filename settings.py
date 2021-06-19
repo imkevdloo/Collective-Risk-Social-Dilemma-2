@@ -9,6 +9,15 @@ SESSION_CONFIGS = [
 
 ]
 
+ROOMS = [
+    dict(
+        name='NE2021',
+        display_name='MSc Neuroecononomics Thesis Experiment',
+        participant_label_file='_rooms/MScNeuroeconomics.txt',
+        use_secure_urls=True
+    ),
+]
+
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
 # the session config can be accessed from methods in your apps as self.session.config,
