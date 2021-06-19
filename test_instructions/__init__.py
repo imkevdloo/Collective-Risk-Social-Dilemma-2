@@ -39,8 +39,8 @@ class Player(BasePlayer):
                                                 "How many points did you earn at the end of round 3?")
     trees_player_total = models.IntegerField(min=0, max=40)
     trees_group_total = models.IntegerField()
-    points_group_total = models.FloatField()
     points_player_total = models.FloatField()
+    points_group_total = models.FloatField()
     eco_status = models.StringField()
 
 
@@ -50,13 +50,17 @@ def creating_session(subsession):
             participant = player.participant
             participant.treatment = random.choice(Constants.treatments)
             print(participant.treatment)
-    return participant.treatment
 
 
 # PAGES
 class Welcome(Page):
     form_model = 'player'
     form_fields = ['consent']
+
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        participant = player.participant
+        player.treatment = participant.treatment
 
 
 class InstructionsMECO(Page):

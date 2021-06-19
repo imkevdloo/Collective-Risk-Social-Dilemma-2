@@ -2,7 +2,7 @@
 <script src="{% static 'global/VT_functionality.js' %}"></script>
 
 {{ block title }}
-    Round {{ player.round_number }}: Control!
+    Round {{ player.round_number }}
 {{ endblock }}
 
 {{ block content }}
@@ -14,7 +14,7 @@
         <br><br>
         Total points you have earned: <button type="button" class="mousy hidden button-outcome" id="profit"> {{ player.participant.points_player_total }} </button>
         <br><br><br>
-        Total trees group (including yourself) cut down: <button type="button" class="mousy hidden button-outcome" id="sumy"> {{ player.participant.trees_group_total }} </button>
+        Total trees the group (including yourself) cut down: <button type="button" class="mousy hidden button-outcome" id="sumy"> {{ player.participant.trees_group_total }} </button>
         <br><br>
         Total points of the group (including yourself): <button type="button" class="mousy hidden button-outcome" id="sum_profit"> {{ player.participant.points_group_total }} </button>
         <br><br><br>

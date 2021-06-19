@@ -135,20 +135,6 @@ def set_profit(player):
     return participant.profit_player_total
 
 
-def custom_export(players):
-    yield ['session', 'trees_player_round', 'eco_status', 'trees_player_total', 'trees_p2']
-    for player in players:
-        participant = player.participant
-        session = player.session
-        yield [session.code, participant.code, participant.trees_player_round, participant.eco_status,
-               participant.trees_player_total, participant.get('trees_p2')]
-
-
-def participant_to_player(player):
-    player.eco_status = player.participant.eco_status
-    player.trees_p2 = player.participant.trees_p2
-
-
 # PAGES
 class DecisionControl(Page):
     form_model = 'player'
@@ -168,18 +154,19 @@ class DecisionControl(Page):
     @staticmethod
     def before_next_page(player, timeout_happened):
         participant = player.participant
+        player.treatment = participant.treatment
         participant.trees_player_round = player.trees_player_round
-        participant.trees_group_round = set_trees_group_round(player)
-        participant.forest = set_forest(player)
-        participant.trees_group_total = set_trees_group_total(player)
-        participant.eco_status = set_eco_status(player)
-        participant.trees_player_total = set_trees_player_total(player)
-        participant.points_player_round = set_points_player_round(player)
-        participant.points_player_total = set_points_player_total(player)
-        participant.points_group_round = set_points_group_round(player)
-        participant.points_group_total = set_points_group_total(player)
-        participant.profit_player_total = set_profit(player)
-        participant.game_over = 0
+        player.trees_group_round = set_trees_group_round(player)
+        player.forest = set_forest(player)
+        player.trees_group_total = set_trees_group_total(player)
+        player.eco_status = set_eco_status(player)
+        player.trees_player_total = set_trees_player_total(player)
+        player.points_player_round = set_points_player_round(player)
+        player.points_player_total = set_points_player_total(player)
+        player.points_group_round = set_points_group_round(player)
+        player.points_group_total = set_points_group_total(player)
+        player.profit_player_total = set_profit(player)
+        player.game_over = 0
         participant.sButtonClick = player.sButtonClick
         participant.sTimeClick = player.sTimeClick
 
@@ -203,17 +190,17 @@ class DecisionEco(Page):
     def before_next_page(player, timeout_happened):
         participant = player.participant
         participant.trees_player_round = player.trees_player_round
-        participant.trees_group_round = set_trees_group_round(player)
-        participant.forest = set_forest(player)
-        participant.trees_group_total = set_trees_group_total(player)
-        participant.eco_status = set_eco_status(player)
-        participant.trees_player_total = set_trees_player_total(player)
-        participant.points_player_round = set_points_player_round(player)
-        participant.points_player_total = set_points_player_total(player)
-        participant.points_group_round = set_points_group_round(player)
-        participant.points_group_total = set_points_group_total(player)
-        participant.profit_player_total = set_profit(player)
-        participant.game_over = 0
+        player.trees_group_round = set_trees_group_round(player)
+        player.forest = set_forest(player)
+        player.trees_group_total = set_trees_group_total(player)
+        player.eco_status = set_eco_status(player)
+        player.trees_player_total = set_trees_player_total(player)
+        player.points_player_round = set_points_player_round(player)
+        player.points_player_total = set_points_player_total(player)
+        player.points_group_round = set_points_group_round(player)
+        player.points_group_total = set_points_group_total(player)
+        player.profit_player_total = set_profit(player)
+        player.game_over = 0
         participant.sButtonClick = player.sButtonClick
         participant.sTimeClick = player.sTimeClick
 
