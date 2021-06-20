@@ -6,33 +6,36 @@
 {{ endblock }}
 
 {{ block content }}
-
-    <p>
-        Hover over the blocks to reveal the information. You must hover over at least one block before you can proceed to the next round.
-        <br><br><br>
-        Total trees you cut down: <button type="button" class="mousy hidden button-outcome" id="y"> {{ player.participant.trees_player_total }} </button>
-        <br><br>
-        Total points you have earned: <button type="button" class="mousy hidden button-outcome" id="profit"> {{ player.participant.points_player_total }} </button>
-        <br><br><br>
-        Total trees the group (including yourself) cut down: <button type="button" class="mousy hidden button-outcome" id="sumy"> {{ player.participant.trees_group_total }} </button>
-        <br><br>
-        Total points of the group (including yourself): <button type="button" class="mousy hidden button-outcome" id="sum_profit"> {{ player.participant.points_group_total }} </button>
-        <br><br><br>
-        Trees left in the common forest: <button type="button" class="mousy hidden button-outcome" id="x"> {{ player.participant.forest }} </button>
-        <br><br>
-    </p>
+<p>
+    Hover over the blocks to reveal the information. You must hover over at least one block before you can proceed to the next round.
+    <br><br><br>
+    Total trees you cut down: <button type="button" class="mousy button-outcome hidden" id="trees_p1_tot"> {{ player.participant.trees_player_total}} </button>
+    <br><br>
+    Total points you have earned: <button type="button" class="mousy button-outcome hidden" id="points_p1_tot"> {{ player.participant.points_player_total }} </button>
+    <br><br><br>
+    Total trees the group (including yourself) cut down: <button type="button" class="mousy button-outcome hidden" id="trees_gr_tot"> {{ player.participant.trees_group_total }} </button>
+    <br><br>
+    Total points of the group (including yourself): <button type="button" class="mousy button-outcome hidden" id="points_gr_tot"> {{ player.participant.points_group_total }} </button>
+    <br><br><br>
+    Trees left in the common forest: <button type="button" class="mousy button-outcome hidden" id="forest"> {{ player.participant.forest }} </button>
+    <br><br>
+</p>
 
     {{ formfields }}
     {{ next_button }}
-
-<script>
-    document.addEventListener("DOMContentLoaded", function(debug=true) {
-        document.getElementById('sButtonClick').type = 'hidden'
-        document.getElementById('sTimeClick').type = 'hidden'
-        InitializeVT(document.getElementsByClassName('otree-body')[0]);
-        // Convert all buttons with the class 'mousy' into mouseover VT buttons
-        ConvertButtons2VT('mousy',sActivation='mouseover');
-    });
-</script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function(debug=true) {
+            document.getElementById('sButtonClick').type = 'hidden'
+            document.getElementById('sTimeClick').type = 'hidden'
+            InitializeVT(document.getElementsByClassName('otree-body')[0]);
+            // Convert all buttons with the class 'clickable' into click VT buttons
+            // ConvertButtons2VT('clickable',sActivation='click');
+            // Convert all buttons with the class 'mousy' into mouseover VT buttons
+            ConvertButtons2VT('mousy',sActivation='mouseover');
+            // Convert all buttons with the class 'row' into click VT buttons that activate outcome-buttons with the class 'r1'
+            // ConvertButtons2VT('row',sActivation='click', 'r1');
+        });
+    </script>
 
 {{ endblock }}

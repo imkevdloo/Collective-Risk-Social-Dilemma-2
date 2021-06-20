@@ -1,4 +1,5 @@
 import random
+from typing import FrozenSet
 
 from otree.api import *
 from otree.models import player
@@ -46,9 +47,8 @@ class Player(BasePlayer):
     points_group_total = models.FloatField() # Total accumulated points of group
     profit_player_total = models.FloatField()
     game_over = models.IntegerField(min=0, max=1)
-    sButtonClick = models.StringField(label="")
-    sTimeClick = models.StringField(label="")
-
+    sButtonClick = models.StringField(label=" ", blank=True)
+    sTimeClick = models.StringField(label=" ", blank=True)
 
 # FUNCTIONS
 def set_trees_group_round(player):
