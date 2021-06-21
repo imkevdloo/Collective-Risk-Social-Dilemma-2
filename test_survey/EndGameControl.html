@@ -1,0 +1,24 @@
+{{ block title }}
+    Almost done!
+{{ endblock }}
+
+{{ block content }}
+
+    <p>
+        <b>The game has ended!</b> You and your group played {{ player.round_number }} rounds.
+        <br> <br>
+        In total, you cut down: {{ player.participant.trees_player_total}} trees.
+        <br><br>
+        Total points: {{ player.participant.points_player_total }}.
+        <br><br>
+        Total profit: {{ player.participant.profit_player_total }} EUR.
+        <br><br>
+        There are {{ player.participant.forest }} trees left in the forest. If there are any trees left, these will be planted!
+        <br><br>
+        Please proceed to the next page for a concluding questionnaire.
+    </p>
+
+    {{ next_button }}
+{{ endblock }}
+
+

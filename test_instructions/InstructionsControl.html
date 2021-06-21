@@ -1,0 +1,104 @@
+{{ block title }}
+    Instructions
+{{ endblock }}
+
+{{ block content }}
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+    p {
+        text-align: justify;
+        text-justify: inter-word;
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
+<p>
+    Please read the instructions carefully before you start the game!
+    <br><br>
+    The game is played by <b>4 players</b> in total: you and 3 computerized players.
+    The computerized players' choices are based on average players, the sequence of the game and some randomness.
+    Together with the other players, you share a shared common forest.
+    At the start of the game, the forest contains <b>20 trees</b>. The game is played for <b>10 rounds</b>.
+    In each round, all of the players choose how many trees to cut down from the common forest.
+    The trees you cut down equal points earned and will convert into your profit at the end of the game.
+    <b>Every cut down tree equals 1 point</b>, which at the end of the game will be converted into <b>0.5 EUR profit</b> (1 point = 0.5 EUR).
+    You have the option to cut down either <b>0, 1, 2, 3 or 4 trees</b>.
+    The regrowth rate of the forest is <b>8 trees per round</b>.
+    This means that in each round, 8 new trees are added to the forest.
+    <br><br>
+    If you cut down 0, 1 or 2 tree(s) in every round, your production is considered sustainable.
+    Once you cut down more than 2 trees in any round,
+    your production is not sustainable anymore, for the rest of the game.
+    <br><br>
+    <b>BE WARE!</b> The game ends after 10 rounds, or when the forest has 0 trees left.
+    If the forest has 0 trees left, it means that you and the other players have exploited the forest due to your behavior.
+    If this happens, the forest dies and the game ends. This means that there are no rounds left to cut down trees and earn points.
+    <br><br>
+    All the trees that remain in the forest at the end of the game, will be planted in real life.
+    <br>
+    A random lottery draw will select one participant who will receive their profit.
+</p>
+
+<h3>Example!</h3>
+<p>
+    Let's say you cut down the following number of trees:
+    <br>
+<table style="width:40%">
+    <tr>
+        <th>Round</th>
+        <th>Tree removal</th>
+        <th>Points</th>
+    </tr>
+    <tr>
+        <td>Round 1</td>
+        <td>2</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>Round 2</td>
+        <td>3</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>Round 3</td>
+        <td>4</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>Round 4</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>Round 5</td>
+        <td>4</td>
+        <td>4</td>
+    </tr>
+</table>
+    <br>
+    Due to you and your group's behaviour, after round 5 the forest has 0 trees left and the game ends. <br><br>
+    This means that you have <b>removed 14 trees</b> from the forest in total. <br>
+    This will give you<b>14 points</b> and a <b>profit of 14 * 0.5 = 7 EUR</b>. <br>
+    Your production process is not considered sustainable. <br><br>
+</p>
+
+<h3>Are the instructions clear?</h3>
+<p>
+    To check whether you read and understood the instructions, please answer in the following questions.
+    <br>
+    {{ formfield 'forest' }}
+    {{ formfield 'check_threshold' }}
+    {{ formfield 'check_profit_Control'  }}
+</p>
+
+    {{ next_button }}
+{{ endblock }}
+
+
