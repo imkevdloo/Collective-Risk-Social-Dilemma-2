@@ -75,7 +75,7 @@ class InstructionsMECO(Page):
     @staticmethod
     def error_message(player, values):
         print('values is', values)
-        if values['forest'] != 20 or values['check_threshold'] != 0 or values['check_profit_MECO'] != 3.25:
+        if values['forest'] != 20 or values['check_threshold'] != 0 or values['check_profit_MECO'] != 6.25:
             return 'One or more of your answers are not correct. Please try again!'
 
     @staticmethod
